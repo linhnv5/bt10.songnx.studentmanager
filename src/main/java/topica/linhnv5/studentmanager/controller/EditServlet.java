@@ -23,11 +23,12 @@ public class EditServlet extends HttpServlet {
         ServletOutputStream out = response.getOutputStream();
 
         // get infomation send to server
-        int id; String name; byte gender; Date admissionDay;
+        int id; String name; int birth; byte gender; Date admissionDay;
 
         try {
         	id           = Integer.parseInt(request.getParameter("id"));
         	name         = request.getParameter("name");
+        	birth        = Integer.parseInt(request.getParameter("birth"));
         	gender       = Byte.parseByte(request.getParameter("gender"));
         	admissionDay = DateUtil.gI().parse(request.getParameter("admissionDay"));
         } catch(Exception e) {
@@ -37,7 +38,7 @@ public class EditServlet extends HttpServlet {
         }
 
         // add to server
-        if(!StudentDB.gI().editStudent(id, name, gender, admissionDay)) {
+        if(!StudentDB.gI().editStudent(id, name, birth, gender, admissionDay)) {
         	// print 0 to unsuccessful
         	out.println("0");
         	return;

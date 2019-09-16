@@ -20,11 +20,12 @@ public interface IDatabase {
 	/**
 	 * Add a student to map
 	 * @param name          name of student
+	 * @param yearOfBirth   year of birth
 	 * @param gender        gender of student
 	 * @param admissionDay  admissionDay of student
 	 * @return  if unsuccessful return -1, otherwise return id of student have been added
 	 */
-	public int addStudent(String name, byte gender, Date admissionDay);
+	public int addStudent(String name, int yearOfBirth, byte gender, Date admissionDay);
 
 	/**
 	 * Delete a student by using it's iddb
@@ -37,11 +38,12 @@ public interface IDatabase {
 	 * Modify student info by it's iddb
 	 * @param iddb          id of student
 	 * @param name          name of student
+	 * @param yearOfBirth   year of birth
 	 * @param gender        gender of student
 	 * @param admissionDay  admissionDay of student
 	 * @return              true if success, false if not success
 	 */
-	public boolean editStudent(int iddb, String name, byte gender, Date admissionDay);
+	public boolean editStudent(int iddb, String name, int yearOfBirth, byte gender, Date admissionDay);
 
 	/**
 	 * Get a list of student by it's name<br/>

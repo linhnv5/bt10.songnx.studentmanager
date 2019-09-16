@@ -6,13 +6,7 @@ $(document).ready(function(){
 	reload();
 
 	// Get the modal
-	modal = $(".modal");
-
-	// Get the <span> element that closes the modal
-	// When the user clicks on <span> (x), close the modal
-	$('.close').click(function() {
-		modal.hide();
-	});
+	modal = $("#myModal");
 });
 
 // Reload page
@@ -26,7 +20,7 @@ function reload() {
 // Add Student
 function addStudent() {
 	$('#hiddenView').load('studentedit.jsp', function() {
-		modal.show();
+		$("#myModal").modal('show');
 	});
 }
 
@@ -45,28 +39,30 @@ function deleteStudent(id) {
 // Edit Student
 function editStudent(id) {
 	$('#hiddenView').load('studentedit.jsp?id='+id, function() {
-		modal.show();
+		modal.modal('show');
 	});
 }
 
 // Submit add student
 function submitAdd() {
-	let name   = $("input[name='name']").val();
+	let vname  = $("input[name='name']").val();
+	let birth  = $("input[name='birth']").val();
 	let gender = $("input[name='gender']:checked").val();
 	let adDay  = $("input[name='adDay']").val();
 
-	if(name == "" || gender == "" || adDay == null) {
+	if(vname == "" || birth == "" || gender == "" || adDay == null) {
 		alert("Please fill all data before click add!");
 		return;
 	}
 
-	$.get("add?name="+name+"&gender="+gender+"&admissionDay="+adDay, function(ketqua) {
-		modal.hide();
+	$.get("add?name="+vname+"&birth="+birth+"&gender="+gender+"&admissionDay="+adDay, function(ketqua) {
+		modal.modal('hide');
     	if(ketqua == 0) {
 			alert("Add student unsuccessful!");
 			return;
     	}
 		alert("Add student successful!");
+		name = "";
 		reload();
     });
 }
@@ -74,17 +70,18 @@ function submitAdd() {
 // Submit edit student
 function submitEdit() {
 	let id     = $("input[name='id']").val();
-	let name   = $("input[name='name']").val();
+	let vname  = $("input[name='name']").val();
+	let birth  = $("input[name='birth']").val();
 	let gender = $("input[name='gender']:checked").val();
 	let adDay  = $("input[name='adDay']").val();
 
-	if(id == "" || name == "" || gender == "" || adDay == null) {
+	if(id == "" || vname == "" || birth == "" || gender == "" || adDay == null) {
 		alert("Please fill all data before click set!");
 		return;
 	}
 
-	$.get("edit?id="+id+"&name="+name+"&gender="+gender+"&admissionDay="+adDay, function(ketqua) {
-		modal.hide();
+	$.get("edit?id="+id+"&name="+vname+"&birth="+birth+"&gender="+gender+"&admissionDay="+adDay, function(ketqua) {
+		modal.modal('hide');
 		if(ketqua == 0) {
 			alert("Edit student unsuccessful!");
 			return;
@@ -96,7 +93,18 @@ function submitEdit() {
 
 // Find by name
 function findStudent() {
-	name = $("input[name='findName']").val();
+	vname = $("input[name='findName']").val();
+	if (vname == null || vname == "") {
+		alert ("Please enter the name to find!");
+		return;
+	}
+	name = vname;
+	reload();
+}
+
+// Back to student list
+function studentList() {
+	name = "";
 	reload();
 }
 

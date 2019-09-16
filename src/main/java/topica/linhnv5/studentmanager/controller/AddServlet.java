@@ -23,10 +23,11 @@ public class AddServlet extends HttpServlet {
         ServletOutputStream out = response.getOutputStream();
 
         // get infomation send to server
-        String name; byte gender; Date admissionDay;
+        String name; int birth; byte gender; Date admissionDay;
 
         try {
         	name         = request.getParameter("name");
+        	birth        = Integer.parseInt(request.getParameter("birth"));
         	gender       = Byte.parseByte(request.getParameter("gender"));
         	admissionDay = DateUtil.gI().parse(request.getParameter("admissionDay"));
         } catch(Exception e) {
@@ -36,7 +37,7 @@ public class AddServlet extends HttpServlet {
         }
 
         // add to server
-        StudentDB.gI().addStudent(name, gender, admissionDay);
+        StudentDB.gI().addStudent(name, birth, gender, admissionDay);
 
         // print 1 to success
     	out.println("1");

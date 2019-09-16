@@ -30,11 +30,11 @@ public final class StudentDB implements IDatabase {
 	@SuppressWarnings("deprecation")
 	private StudentDB() {
 		this.mapOfStudent = new HashMap<Integer, Student>();
-		this.addStudent("Hoang", (byte)0, new Date(2015-1900, 5, 2));
-		this.addStudent("Linh", (byte)0, new Date(2015-1900, 8, 23));
-		this.addStudent("Khanh", (byte)0, new Date(2015-1900, 7, 12));
-		this.addStudent("Kha", (byte)0, new Date(2015-1900, 4, 3));
-		this.addStudent("CuChuoi", (byte)0, new Date(2015-1900, 6, 4));
+		this.addStudent("Hoang",   1995, (byte)0, new Date(2015-1900, 5, 2));
+		this.addStudent("Linh",    1998, (byte)0, new Date(2015-1900, 8, 23));
+		this.addStudent("Khanh",   1999, (byte)0, new Date(2015-1900, 7, 12));
+		this.addStudent("Kha",     2001, (byte)0, new Date(2015-1900, 4, 3));
+		this.addStudent("CuChuoi", 2210, (byte)0, new Date(2015-1900, 6, 4));
 	}
 
 	// Singleton
@@ -78,9 +78,9 @@ public final class StudentDB implements IDatabase {
 	}
 
 	@Override
-	public synchronized final int addStudent(String name, byte gender, Date admissionDay) {
+	public synchronized final int addStudent(String name, int yearOfBirth, byte gender, Date admissionDay) {
 		// Create a student and put it to map
-		Student student = new Student(idAutoIncrement++, name, gender, admissionDay);
+		Student student = new Student(idAutoIncrement++, name, yearOfBirth, gender, admissionDay);
 		this.mapOfStudent.put(student.getIddb(), student);
 		return student.getIddb();
 	}
@@ -93,7 +93,7 @@ public final class StudentDB implements IDatabase {
 	}
 
 	@Override
-	public synchronized final boolean editStudent(int iddb, String name, byte gender, Date admissionDay) {
+	public synchronized final boolean editStudent(int iddb, String name, int yearOfBirth, byte gender, Date admissionDay) {
 		// Get student by iddb
 		Student student = this.getStudentByID(iddb);
 

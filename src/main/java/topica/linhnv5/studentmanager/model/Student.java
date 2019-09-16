@@ -22,6 +22,11 @@ public class Student {
 	private String name;
 
 	/**
+	 * Year of birth
+	 */
+	private int yearOfBirth;
+
+	/**
 	 * Gender of student, 0 for female and 1 for male
 	 */
 	private byte gender;
@@ -35,12 +40,14 @@ public class Student {
 	 * Create student using iddb, name, gender and admissionDay
 	 * @param iddb
 	 * @param name
+	 * @param yearOfBirth   year of birth
 	 * @param gender
 	 * @param admissionDay
 	 */
-	public Student(int iddb, String name, byte gender, Date admissionDay) {
+	public Student(int iddb, String name, int yearOfBirth, byte gender, Date admissionDay) {
 		this.iddb = iddb;
 		this.name = name;
+		this.yearOfBirth = yearOfBirth;
 		this.gender = gender;
 		this.admissionDay = admissionDay;
 	}
@@ -57,6 +64,20 @@ public class Student {
 	 */
 	public final String getName() {
 		return name;
+	}
+
+	/**
+	 * @return the yearOfBirth
+	 */
+	public final int getYearOfBirth() {
+		return yearOfBirth;
+	}
+
+	/**
+	 * @param yearOfBirth the yearOfBirth to set
+	 */
+	public final void setYearOfBirth(int yearOfBirth) {
+		this.yearOfBirth = yearOfBirth;
 	}
 
 	/**

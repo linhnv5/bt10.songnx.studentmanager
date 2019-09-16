@@ -15,26 +15,116 @@
 	}
 	if(id == -1) {
 %>
-Name: <input type="text" name="name"/><br/>
-Gender: <input type="radio" name="gender" value="1" checked="checked"/>Male <input type="radio" name="gender" value="0"/>Female<br/>
-Admission Day: <input type="date" name="adDay"/><br/>
-<button onclick="submitAdd();">Add</button>
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title">Student Add</h4>
+</div>
+
+<div class="modal-body">
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">Name</label>
+		<div class="col-md-7">
+			<input type="text" name="name"/>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">YearOfBirth</label>
+		<div class="col-md-7">
+			<input type="number" name="birth"/>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">Gender</label>
+		<div class="col-md-7">
+			<input type="radio" name="gender" value="1" checked="checked"/>Male <input type="radio" name="gender" value="0"/>Female
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">Admission Day</label>
+		<div class="col-md-7">
+			<input type="date" name="adDay"/>
+		</div>
+	</div>
+</div>
+
+<button class="btn btn-info btn-md" onclick="submitAdd();">Add</button>
+</div>
 <%
 	} else {
 		Student student = StudentDB.gI().getStudentByID(id);
+%>
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title">Edit Student #<%=id%></h4>
+</div>
+
+<div class="modal-body">
+<%
 		if(student == null) {
 %>
 Student with id=<%=id%> not exists!
 <%
 		} else {
 %>
-<input type="hidden" name="id" value="<%=id%>"/>
-Name: <input type="text" name="name" value="<%=student.getName()%>"/><br/>
-Gender: <input type="radio" name="gender" value="1"<%=student.getGender() == 1 ? " checked=checked" : ""%>/>Male
-		<input type="radio" name="gender" value="0"<%=student.getGender() == 0 ? " checked=checked" : ""%>/>Female<br/>
-Admission Day: <input type="date" name="adDay" value="<%=student.getAdmissionDayStr1()%>"/><br/>
-<button onclick="submitEdit();">Set</button>
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">Name</label>
+		<div class="col-md-7">
+			<input type="text" name="name" value="<%=student.getName()%>"/>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">YearOfBirth</label>
+		<div class="col-md-7">
+			<input type="number" name="birth" value="<%=student.getYearOfBirth()%>"/>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">Gender</label>
+		<div class="col-md-7">
+			<input type="radio" name="gender" value="1"<%=student.getGender() == 1 ? " checked=checked" : ""%>/>Male
+			<input type="radio" name="gender" value="0"<%=student.getGender() == 0 ? " checked=checked" : ""%>/>Female<br/>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group col-md-12">
+		<label class="col-md-3 control-lable">Admission Day</label>
+		<div class="col-md-7">
+			<input type="date" name="adDay" value="<%=student.getAdmissionDayStr1()%>"/><br/>
+		</div>
+	</div>
+</div>
+
+<button class="btn btn-info btn-md" onclick="submitEdit();">Set</button>
+
 <%
 		}
+%>
+
+</div>
+
+<%
 	}
 %>
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

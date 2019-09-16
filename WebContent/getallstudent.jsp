@@ -32,42 +32,51 @@
 
 	// if have enough PAGE_MAX elements then sub PAGE_MAX elements to list
 	list = pageNum < pageNumMax-1 ? list.subList(pageNum*PAGE_MAX, (pageNum+1)*PAGE_MAX) : list.subList(pageNum*PAGE_MAX, list.size());
+
+	if (name == null) {
 %>
-<table border="1">
+<!-- Default panel contents -->
+<div class="panel-heading">
+	<div class="lead">List of Students</div>
+	<div class="lead"><input type="text" name="findName"> <button onClick="findStudent();">Find</button></div>
+</div>
 <%
-	if (name != null) {
-%>
-    <thead>  
-        <tr>
-			<th colspan="5">Result for <%=name%></th>
-        </tr>  
-    </thead>  
+	} else {
+%>		  	
+<!-- Default panel contents -->
+<div class="panel-heading">
+	<div class="lead"><button onClick="studentList();">Back To Student List</button></div>
+	<div class="lead">Result for <%=name%></div>
+</div>
 <%
-		}
+	}
 %>
+<table class="table table-hover">
     <thead>  
         <tr>  
-            <th>ID</th>
+            <th>Index</th>
             <th>Name</th>
+            <th>Birth</th>
             <th>Gender</th>
             <th>Admission Day</th>
-            <th>Action</th>
+	        <th width="100"></th>
+	        <th width="100"></th>
         </tr>  
     </thead>  
-    <tbody>  
+    <tbody>
     	<%
 	    	// print to client
-        	for (Student student : list) {
+        	for (int i = 0; i < list.size(); i++) {
+        		Student student = list.get(i);
         %>
-            <tr>  
-                <td><%=student.getIddb()%></td>
+            <tr>
+                <td><%=i%></td>
                 <td><%=student.getName()%></td>
+                <td><%=student.getYearOfBirth()%></td>
                 <td><%=student.getGenderStr()%></td>
                 <td><%=student.getAdmissionDayStr2()%></td>
-                <td>
-                    <a href="javascript:editStudent(<%=student.getIddb()%>);">Edit</a>  
-                    <a href="javascript:deleteStudent(<%=student.getIddb()%>);">Delete</a>  
-                </td>
+				<td><a href="javascript:editStudent(<%=student.getIddb()%>);" class="btn btn-success custom-width">Edit</a></td>
+				<td><a href="javascript:deleteStudent(<%=student.getIddb()%>);"  class="btn btn-danger custom-width">Delete</a></td>
             </tr>  
         <%
 	        }

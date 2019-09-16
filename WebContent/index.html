@@ -3,27 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Student Manager V1.0</title>
-	<!-- JQuery cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="js/web.js"></script>
-	<!--  Style Sheet  -->
-	<link rel="stylesheet" href="css/web.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+	<link href="css/app.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="center">
-		Find Name: <input type="text" name="findName"> <button onClick="findStudent();">Find</button> <br/>
-	</div>
-	<div class="center">
-		<button onClick="addStudent();">Add Student</button> <br/>
-	</div>
-	<div id="studentView" class="center"></div>
+	<!--  Main View -->
+	<div class="generic-container">
+	 	<div class="well">
+	 		<button type="button" class="btn btn-info btn-lg" onClick="addStudent();">Add Student</button>
+	 	</div>
+		<div id="studentView" class="panel panel-default">
+		</div>
+   	</div>
 
-	<!-- The Modal -->
-	<div class="modal">
-		<!-- Modal content -->
-		<div class="modal-content">
-    		<span class="close">&times;</span>
-    		<div id="hiddenView" class="center"></div>
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content" id="hiddenView">
+			</div>
 		</div>
 	</div>
 </body>
